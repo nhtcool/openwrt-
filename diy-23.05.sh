@@ -88,5 +88,12 @@ sed -i 's/services\/nlbw/nlbw/g' feeds/luci/applications/luci-app-nlbwmon/root/u
 sed -i '/path/s/admin\///g' feeds/luci/applications/luci-app-nlbwmon/root/usr/share/luci/menu.d/luci-app-nlbwmon.json
 sed -i 's/services\///g' feeds/luci/applications/luci-app-nlbwmon/htdocs/luci-static/resources/view/nlbw/config.js
 
+# 修改版本为编译日期
+date_version=$(date +"%y.%m.%d")
+orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
+sed -i "s/${orig_version}/R${date_version} by BlackBull/g" package/lean/default-settings/files/zzz-default-settings
+
+
+
 ./scripts/feeds update -a
 ./scripts/feeds install -a
