@@ -86,7 +86,7 @@ sed -i 's/${g}.*/${a}${b}${c}${d}${e}${f}${hydrid}/g' package/lean/autocore/file
 sed -i "s/'C'/'Core '/g; s/'T '/'Thread '/g" package/lean/autocore/files/x86/autocore
 
 # 修改本地时间格式
-sed -i 's/os.date()/os.date("%a %Y年%m月%d日 星期  %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
+sed -i 's/os.date()/os.date("%Y年%m月%d日 ") .. " " .. translate(os.date("%A")) .. " " .. os.date("%X")/g' package/lean/autocore/files/*/index.htm
 
 # 修改 Makefile
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/..\/..\/luci.mk/$(TOPDIR)\/feeds\/luci\/luci.mk/g' {}
