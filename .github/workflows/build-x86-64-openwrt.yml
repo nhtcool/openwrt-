@@ -13,7 +13,7 @@ env:
   UPLOAD_BIN_DIR: false
   UPLOAD_ARTIFACT: false
   UPLOAD_RELEASE: true
-  TZ: Asia/Aden
+  TZ: Asia/Shanghai
 
 jobs:
   build:
