@@ -1,11 +1,6 @@
 name: build armv8 openwrt
 
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: 0 0 0 0 0
-  watch:
-    types: started
+
 
 env:
   CLASH_KERNEL: arm64
