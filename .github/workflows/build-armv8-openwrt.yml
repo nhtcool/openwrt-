@@ -38,7 +38,7 @@ jobs:
     - name: Set Compile Source Code
       run: |
         if [ ${{ matrix.branch }} == '18.06' ]; then
-          echo "REPO_URL=https://github.com/nhtcool/niu" >> $GITHUB_ENV
+          echo "REPO_URL=https://github.com/nhtcool/Niu" >> $GITHUB_ENV
           echo "REPO_BRANCH=master" >> $GITHUB_ENV
           echo -e "CONFIG_TARGET_armvirt=y\nCONFIG_TARGET_armvirt_64=y" >> $CONFIG_FILE
         elif [ ${{ matrix.branch }} == '23.05' ]; then
@@ -138,7 +138,7 @@ jobs:
     - name: Install Feeds
       run: |
         cd $OPENWRT_PATH
-        if [ $SOURCE_REPO == 'niu' ]; then
+        if [ $SOURCE_REPO == 'Niu' ]; then
           sed -i '/luci/s/^#//; /openwrt-23.05/s/^/#/' feeds.conf.default
         fi
         ./scripts/feeds update -a
