@@ -54,14 +54,14 @@ on:
       toolchain:
         description: '使用toolchain缓存'
         required: false
-        default: true
+        default: false
         type: boolean
 
-      #artifact:
-       # description: '上传固件到Artifact'
-       # required: false
-       # default: true
-       # type: boolean
+      artifact:
+        description: '上传固件到Artifact'
+        required: false
+        default: false
+        type: boolean
 
       release:
         description: '上传固件到Releases'
