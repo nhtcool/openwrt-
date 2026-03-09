@@ -218,7 +218,7 @@ main() {
 # 拉取编译源码
 clone_source_code() {
     # 设置编译源码与分支
-    REPO_URL="https://github.com/coolsnowwolf/lede"
+    REPO_URL="https://github.com/nhtcool/Niu"
     echo "REPO_URL=$REPO_URL" >> $GITHUB_ENV
     REPO_BRANCH="master"
     echo "REPO_BRANCH=$REPO_BRANCH" >> $GITHUB_ENV
