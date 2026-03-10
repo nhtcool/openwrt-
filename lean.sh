@@ -384,7 +384,7 @@ apply_custom_settings() {
     sed -i "s/'C'/'Core '/g; s/'T '/'Thread '/g" package/lean/autocore/files/x86/autocore
 
     # 修改本地时间格式
-    sed -i 's/os.date()/os.date("%Y年%m月%d日 %a星期 %H:%M:%S")/g' package/lean/autocore/files/*/index.htm
+    sed -i 's/os.date()/os.date("%Y年%m月%d日 ") .. " " .. translate(os.date("%A")) .. " " .. os.date("%X")/g' package/lean/autocore/files/*/index.htm
 
     # 修改版本为编译日期
     orig_version=$(awk -F "'" '/DISTRIB_REVISION=/{print $2}' package/lean/default-settings/files/zzz-default-settings)
