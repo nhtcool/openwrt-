@@ -218,7 +218,7 @@ main() {
 # 拉取编译源码
 clone_source_code() {
     # 设置编译源码与分支
-    REPO_URL="https://github.com/immortalwrt/immortalwrt"
+    REPO_URL="https://github.com/nhtcool/niu1"
     echo "REPO_URL=$REPO_URL" >> $GITHUB_ENV
     REPO_BRANCH="openwrt-24.10"
     echo "REPO_BRANCH=$REPO_BRANCH" >> $GITHUB_ENV
