@@ -408,6 +408,44 @@ apply_custom_settings() {
             sed -i "/luci-app-attendedsysupgrade/d" "$makefile"
         fi
     done
+       # ========== 自定义品牌名称（保留原始版本号） ==========
+
+# 1. 修改 include/version.mk 中的发行版名称
+if [ -f "include/version.mk" ]; then
+    # 将 VERSION_DIST 从 "ImmortalWrt" 改为 "MyWrt"
+    sed -i 's/^VERSION_DIST:=.*/VERSION_DIST:=Niu/' include/version.mk
+    # 可选：修改 VERSION_NUMBER 前缀（如果需要，例如将 "R" 改为其他）
+    # sed -i 's/^VERSION_NUMBER:=.*/VERSION_NUMBER:=MyWrt-&/' include/version.mk
+    echo "✅ 已修改 include/version.mk 中的品牌名称"
+fi
+
+# 2. 修改 LuCI 版本文件中的名称（影响 Web 界面显示）
+# LUCI_VERSION_FILE="feeds/luci/modules/luci-base/luasrc/version.lua"
+# if [ -f "$LUCI_VERSION_FILE" ]; then
+    # 将 name = "LuCI" 改为 "MyWrt"（或您想要的名称）
+    # sed -i 's/name = "[^"]*"/name = "MyWrt"/' "$LUCI_VERSION_FILE"
+    # echo "✅ 已修改 LuCI 版本文件中的名称"
+#fi
+
+# 3. 可选：修改 /etc/banner 欢迎信息
+#if [ -f "package/base-files/files/etc/banner" ]; then
+    #sed -i 's/ImmortalWrt/MyWrt/g' package/base-files/files/etc/banner
+    #echo "✅ 已修改欢迎信息中的品牌名称"
+#fi
+
+# 4. 安全处理可能修改 hostname 的 uci-defaults 脚本（与之前相同）
+echo "🔍 检查可能修改 hostname 的 uci-defaults 脚本..."
+find package/A feeds -path "*/root/etc/uci-defaults/*" -type f 2>/dev/null | while read script; do
+    if grep -q "hostname" "$script"; then
+        echo "  处理: $script"
+        cp "$script" "$script.bak"
+        sed -i '/uci.*hostname/s/^/# /' "$script"
+    fi
+done
+
+# 5. 强制修改默认 hostname
+sed -i "s/option hostname 'ImmortalWrt'/option hostname 'Niu'/g" package/base-files/files/bin/config_generate
+echo "✅ 已修改 config_generate 中的默认 hostname"
 }
 
 # 更新配置文件
